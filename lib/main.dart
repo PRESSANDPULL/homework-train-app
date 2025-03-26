@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'pages/home_page.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark,
-    ),
-  );
   runApp(const MyApp());
 }
 
@@ -38,12 +30,21 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             title: '기차 예매',
             theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
-              useMaterial3: true,
+              primarySwatch: Colors.purple,
               scaffoldBackgroundColor: Colors.grey[200],
               appBarTheme: const AppBarTheme(
                 backgroundColor: Colors.white,
                 foregroundColor: Colors.black,
+              ),
+              elevatedButtonTheme: ElevatedButtonThemeData(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.purple,
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  minimumSize: const Size(double.infinity, 50),
+                ),
               ),
             ),
             darkTheme: ThemeData(
@@ -53,6 +54,16 @@ class MyApp extends StatelessWidget {
               appBarTheme: AppBarTheme(
                 backgroundColor: Colors.grey[900],
                 foregroundColor: Colors.white,
+              ),
+              elevatedButtonTheme: ElevatedButtonThemeData(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.purple,
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  minimumSize: const Size(double.infinity, 50),
+                ),
               ),
             ),
             themeMode:

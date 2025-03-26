@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
+import '../main.dart';
 
 class SeatPage extends StatefulWidget {
   final String departureStation;
@@ -69,6 +71,9 @@ class _SeatPageState extends State<SeatPage> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDarkMode = themeProvider.isDarkMode;
+
     return Scaffold(
       appBar: AppBar(title: const Text('좌석 선택'), centerTitle: true),
       body: Column(
@@ -88,10 +93,10 @@ class _SeatPageState extends State<SeatPage> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                const Icon(
+                Icon(
                   Icons.arrow_circle_right_outlined,
                   size: 30,
-                  color: Colors.black,
+                  color: isDarkMode ? Colors.white : Colors.black,
                 ),
                 Expanded(
                   child: Text(
@@ -127,7 +132,7 @@ class _SeatPageState extends State<SeatPage> {
                   width: 24,
                   height: 24,
                   decoration: BoxDecoration(
-                    color: Colors.grey[300],
+                    color: isDarkMode ? Colors.grey[700] : Colors.grey[300],
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
@@ -161,6 +166,8 @@ class _SeatPageState extends State<SeatPage> {
                                 color:
                                     isSelected
                                         ? Colors.purple
+                                        : isDarkMode
+                                        ? Colors.grey[700]
                                         : Colors.grey[300],
                                 borderRadius: BorderRadius.circular(8),
                               ),
@@ -169,7 +176,9 @@ class _SeatPageState extends State<SeatPage> {
                                 seatLabels[col],
                                 style: TextStyle(
                                   color:
-                                      isSelected ? Colors.white : Colors.black,
+                                      isSelected || isDarkMode
+                                          ? Colors.white
+                                          : Colors.black,
                                 ),
                               ),
                             ),
@@ -199,6 +208,8 @@ class _SeatPageState extends State<SeatPage> {
                                 color:
                                     isSelected
                                         ? Colors.purple
+                                        : isDarkMode
+                                        ? Colors.grey[700]
                                         : Colors.grey[300],
                                 borderRadius: BorderRadius.circular(8),
                               ),
@@ -207,7 +218,9 @@ class _SeatPageState extends State<SeatPage> {
                                 seatLabels[col + 2],
                                 style: TextStyle(
                                   color:
-                                      isSelected ? Colors.white : Colors.black,
+                                      isSelected || isDarkMode
+                                          ? Colors.white
+                                          : Colors.black,
                                 ),
                               ),
                             ),

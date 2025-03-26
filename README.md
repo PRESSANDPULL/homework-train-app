@@ -1,17 +1,78 @@
-# homework_train_app
+# 기차 예매 앱
 
-A new Flutter project.
+Flutter를 사용하여 만든 기차 예매 애플리케이션입니다. 사용자는 출발역과 도착역을 선택하고 원하는 좌석을 예매할 수 있습니다.
 
-## Getting Started
+## 구현 기능
 
-This project is a starting point for a Flutter application.
+### 필수 기능
 
-A few resources to get you started if this is your first Flutter project:
+1. UI 명세서를 정확하게 반영
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+   - 명세서에 따른 모든 UI 요소 구현
+   - 각 페이지의 레이아웃 및 디자인 준수
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# homework-train-app
+2. HomePage 구현
+
+   - 출발역/도착역 선택
+   - 역 선택 시 StationListPage로 이동
+   - 좌석 선택 버튼으로 SeatPage로 이동
+
+3. StationListPage 구현
+
+   - 전국 주요 역 목록 표시
+   - 역 선택 시 이전 페이지로 결과 전달
+   - 선택된 역은 목록에서 제외
+
+4. SeatPage 구현
+   - 20열 x 4좌석(A,B,C,D) 구성
+   - 좌석 선택/해제 기능
+   - 예매 확인 다이얼로그
+
+### 도전 기능
+
+1. UX를 고려한 (같은 역 선택 불가) 기능
+
+   - 출발역으로 선택된 역은 도착역 목록에서 제외
+   - 도착역으로 선택된 역은 출발역 목록에서 제외
+   - 좌석 선택 전 예매 버튼 비활성화
+
+2. 다크 테마 적용
+
+   - 앱 전체 테마 전환 기능
+   - Provider를 사용한 테마 상태 관리
+   - 모든 UI 요소에 다크모드 스타일 적용
+
+3. 나만의 기능 추가
+   - 역 위치 스왑 기능: 출발역과 도착역을 한 번의 터치로 교환 (135도 회전된 sync 아이콘)
+   - 테마 토글 기능: 홈 화면에서 다크/라이트 모드를 쉽게 전환할 수 있는 버튼 추가
+
+## 기술 스택
+
+- Flutter
+- Provider (상태 관리)
+- Material Design
+- Cupertino (iOS 스타일 다이얼로그)
+
+## 프로젝트 구조
+
+```
+lib/
+├── main.dart              # 앱 진입점, 테마 설정
+├── pages/                 # 페이지 위젯
+│   ├── home_page.dart     # 홈페이지
+│   ├── seat_page.dart     # 좌석 선택 페이지
+│   └── station_list_page.dart  # 역 목록 페이지
+└── providers/            # 상태 관리
+    └── theme_provider.dart  # 테마 상태 관리
+```
+
+## 예외 처리
+
+1. 같은 역 선택 방지
+
+   - 출발역으로 선택된 역은 도착역 목록에서 제외
+   - 도착역으로 선택된 역은 출발역 목록에서 제외
+
+2. 좌석 선택 제한
+   - 한 번에 하나의 좌석만 선택 가능
+   - 선택된 좌석을 다시 터치하면 선택 해제
